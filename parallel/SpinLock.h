@@ -1,3 +1,4 @@
+#pragma once
 #include "ILock.h"
 #include <atomic>
 
