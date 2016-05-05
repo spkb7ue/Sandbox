@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include <parallel/SpinLockMutex.h>
+#include <parallel/SpinLock.h>
 #include <vector>
 #include <thread>
 #include <mutex>
@@ -36,7 +36,7 @@ class TestSpinLockMutex : public ::testing::Test {
   }
 
   // Objects declared here can be used by all tests in the test case for Foo
-  SpinLockMutex m_spinLock;
+  SpinLock m_spinLock;
 
   int TestIncrement(int numThreads, int numIncrements);
 };
@@ -47,7 +47,7 @@ int TestSpinLockMutex::TestIncrement(int numThreads, int numIncrements)
     std::function<void()> func = [&count, numIncrements, this](){
         for(int i=0;i<numIncrements;++i)
         {
-            std::lock_guard<SpinLockMutex> lockGuard(m_spinLock);
+            std::lock_guard<SpinLock> lockGuard(m_spinLock);
             ++count;
         }
     };
