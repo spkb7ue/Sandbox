@@ -3,7 +3,7 @@
 #include <atomic>
 
 namespace raccoon
-{
+{     
     class SpinLock : public ILock
     {
     public:
