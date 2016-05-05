@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <parallel/SpinLock.h>
+#include <parallel/NullLock.h>
 #include <vector>
 #include <thread>
 #include <mutex>
@@ -7,16 +8,16 @@ using namespace std;
 using namespace raccoon;
 
 // The fixture for testing class Foo.
-class TestSpinLockMutex : public ::testing::Test {
+class TestLock : public ::testing::Test {
  protected:
   // You can remove any or all of the following functions if its body
   // is empty.
 
-  TestSpinLockMutex() {
+  TestLock() {
     // You can do set-up work for each test here.
   }
 
-  virtual ~TestSpinLockMutex() {
+  virtual ~TestLock() {
     // You can do clean-up work that doesn't throw exceptions here.
   }
 
@@ -37,17 +38,18 @@ class TestSpinLockMutex : public ::testing::Test {
 
   // Objects declared here can be used by all tests in the test case for Foo
   SpinLock m_spinLock;
+  NullLock m_nullLock;
 
-  int TestIncrement(int numThreads, int numIncrements);
+  static int TestIncrement(int numThreads, int numIncrements, ILock *lock);
 };
 
-int TestSpinLockMutex::TestIncrement(int numThreads, int numIncrements)
+int TestLock::TestIncrement(int numThreads, int numIncrements, ILock *lock)
 {
     int count = 0;
-    std::function<void()> func = [&count, numIncrements, this](){
+    std::function<void()> func = [&count, numIncrements, lock](){
         for(int i=0;i<numIncrements;++i)
         {
-            std::lock_guard<SpinLock> lockGuard(m_spinLock);
+            std::lock_guard<ILock> lockGuard(*lock);
             ++count;
         }
     };
@@ -64,16 +66,30 @@ int TestSpinLockMutex::TestIncrement(int numThreads, int numIncrements)
 }
 
 // Tests that the Foo::Bar() method does Abc.
-TEST_F(TestSpinLockMutex, TestIncrementingValue)
+TEST_F(TestLock, SpinLock)
 {
     int numRep = 1000;
     int numThreads = 3;
     int numIncrements = 50;
     for(int i=0;i<numRep;++i)
     {
-        ASSERT_TRUE(TestIncrement(numThreads, numIncrements) == numThreads*numIncrements);
+        ASSERT_TRUE(TestIncrement(numThreads, numIncrements, &m_spinLock) == numThreads*numIncrements);
     }
+}
 
+TEST_F(TestLock, NullLock)
+{
+    int numRep = 1000;
+    int numThreads = 3;
+    int numIncrements = 50;
+    long expectedValue = 0;
+    long actualValue = 0;
+    for(int i=0;i<numRep;++i)
+    {
+        actualValue += TestIncrement(numThreads, numIncrements, &m_nullLock);
+        expectedValue += numThreads*numIncrements;
+    }
+    ASSERT_FALSE(actualValue == expectedValue);
 }
 
 int main(int argc, char **argv) {

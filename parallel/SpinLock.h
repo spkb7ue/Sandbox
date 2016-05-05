@@ -1,5 +1,4 @@
 #include "ILock.h"
-#include <boost/atomic.hpp>
 #include <atomic>
 
 namespace raccoon
