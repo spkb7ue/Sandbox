@@ -1,6 +1,6 @@
 #include "../BTree.h"
 #include <iostream>
-#define BOOST_TEST_MODULE MyTest
+#define BOOST_TEST_MODULE TEST_BTree
 #include <boost/test/unit_test.hpp>
 using namespace std;
 using namespace raccoon;

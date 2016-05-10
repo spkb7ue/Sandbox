@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <stdexcept>
 #include <boost/throw_exception.hpp>
 
 namespace raccoon
@@ -10,25 +11,25 @@ template <typename T>
 class Node
 {
 public:
-  
+
   Node(const T& data, Node<T>* parent = nullptr);
-  
+
   void AddChild(Node<T>* child);
-  
-  unsigned GetNumChildren()const; 
-  
+
+  unsigned GetNumChildren()const;
+
   Node<T>* GetParent()const;
-  
+
   Node<T>* GetChild(unsigned index)const;
-  
+
   T& Data();
-  
+
 private:
-    
+
   T m_data;
   Node<T> *m_parent;
   std::vector< Node<T>* > m_children;
-  
+
 };
 
 template<typename T>
@@ -65,5 +66,5 @@ T& Node<T>::Data(){
     return m_data;
 }
 
-  
+
 } // namespace raccoon

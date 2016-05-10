@@ -12,6 +12,6 @@ add_test(TestTree ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestTree)
 add_executable(TestBTree TestBTree.cpp)
 add_test(TestBTree ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestBTree)
 
-target_link_libraries(TestNode ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY} ${GTEST_LIB_DIR}/libgtest.a ${GTEST_LIB_DIR}/libgtest_main.a pthread)
+target_link_libraries(TestNode ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 target_link_libraries(TestTree ${GTEST_LIB_DIR}/libgtest.a ${GTEST_LIB_DIR}/libgtest_main.a pthread)
 target_link_libraries(TestBTree  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
