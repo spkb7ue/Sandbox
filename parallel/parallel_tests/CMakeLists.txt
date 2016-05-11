@@ -6,7 +6,6 @@ add_executable(TestLock TestLock.cpp)
 add_test(TestLock ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestLock)
 target_link_libraries(TestLock
                       ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-                      pthread
                       ${STATIC_LIBRARY_OUTPUT_DIR}/libparallel.a)
 
 add_executable(TestDCTree TestDCTree.cpp)
