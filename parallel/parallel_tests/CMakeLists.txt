@@ -5,8 +5,7 @@ include_directories(${GTEST_INCLUDE_DIR} ${PROJECT_SOURCE_DIR})
 add_executable(TestLock TestLock.cpp)
 add_test(TestLock ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestLock)
 target_link_libraries(TestLock
-                      ${GTEST_LIB_DIR}/libgtest.a
-                      ${GTEST_LIB_DIR}/libgtest_main.a
+                      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
                       pthread
                       ${STATIC_LIBRARY_OUTPUT_DIR}/libparallel.a)
 
