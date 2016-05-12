@@ -11,9 +11,7 @@ target_link_libraries(TestLock
 add_executable(TestDCTree TestDCTree.cpp)
 add_test(TestDCTree ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestDCTree)
 target_link_libraries(TestDCTree
-                      ${GTEST_LIB_DIR}/libgtest.a
-                      ${GTEST_LIB_DIR}/libgtest_main.a
-                      pthread)
+                      ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 
 add_executable(TestSyncObject TestSyncObject.cpp)
 add_test(TestSyncObject ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/TestSyncObject)
