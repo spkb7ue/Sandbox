@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <atomic>
 
 namespace raccoon
 {
@@ -9,5 +10,7 @@ namespace raccoon
         ThreadManager(std::function<void()> callback);
     private:
         std::function<void()> m_callback;
+        void ThreadFunction();
+        std::atomic_bool m_exitThread;
     };
 }
