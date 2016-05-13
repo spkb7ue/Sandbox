@@ -1,8 +1,6 @@
 #pragma once
 #include <functional>
 
-
-
 namespace raccoon
 {
     class ThreadManager

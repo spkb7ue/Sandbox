@@ -18,7 +18,7 @@ struct SomeData
     int y;
     char *z;
 };
-namespace racoon{
+namespace raccoon{
 
 // Tests that the Foo::Bar() method does Abc.
 BOOST_AUTO_TEST_CASE(TestCreateTree)
