@@ -20,5 +20,11 @@ void ThreadManager::ThreadFunction()
         {
             m_callback();
         }
+        m_executeCallback = false;
     }
+}
+
+void ThreadManager::RequestCallbackExecution()
+{
+
 }
