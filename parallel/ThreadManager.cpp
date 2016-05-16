@@ -1,4 +1,5 @@
 #include "ThreadManager.h"
+#include <mutex>
 
 using namespace raccoon;
 
@@ -26,6 +27,7 @@ void ThreadManager::ThreadFunction()
 
 bool ThreadManager::RegisterCallbackExecutionRequest()
 {
+    std::lock_guard<SpinLock> mutex(m_lock);
     while(m_executeCallback)
     {
         // Spin thread while the call_back is executing
@@ -35,8 +37,9 @@ bool ThreadManager::RegisterCallbackExecutionRequest()
     return !m_exitThread;
 }
 
-void ThreadManager::ExitThread()
+void ThreadManager::RegisterThreadTerminationRequest()
 {
+    std::lock_guard<SpinLock> mutex(m_lock);
     while(m_executeCallback)
     {
 
