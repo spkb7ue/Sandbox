@@ -4,7 +4,8 @@ using namespace raccoon;
 
 ThreadManager::ThreadManager(std::function<void()> callback):
 m_callback(callback),
-m_exitThread(false)
+m_exitThread(false),
+m_executeCallback(false)
 {}
 
 void ThreadManager::ThreadFunction()
@@ -15,16 +16,29 @@ void ThreadManager::ThreadFunction()
         {
             break;
         }
-
-        if(m_callback != nullptr)
+        if(m_executeCallback)
         {
             m_callback();
+            m_executeCallback = false;
         }
-        m_executeCallback = false;
     }
 }
 
-void ThreadManager::RequestCallbackExecution()
+bool ThreadManager::RegisterCallbackExecutionRequest()
 {
+    while(m_executeCallback)
+    {
+        // Spin thread while the call_back is executing
+    }
 
+    m_executeCallback = true;
+    return !m_exitThread;
+}
+
+void ThreadManager::ExitThread()
+{
+    while(m_executeCallback)
+    {
+
+    }
 }

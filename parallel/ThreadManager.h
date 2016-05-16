@@ -9,7 +9,8 @@ namespace raccoon
     public:
         ThreadManager(std::function<void()> callback);
 
-        void RequestCallbackExecution();
+        bool RegisterCallbackExecutionRequest();
+        void ExitThread();
 
     private:
         std::function<void()> m_callback;
