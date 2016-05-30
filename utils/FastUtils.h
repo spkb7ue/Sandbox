@@ -94,12 +94,3 @@ struct GetBinaryRepresentationV2<0>
     enum { value = 0 };
 };
 }
-/*
-#define num 9
-int main()
-{
-    static_assert(get_bits<num>::bit_num == 1001, "This is failure");
-    static_assert(Bin<num>::value == 1001, "This is failure");
-
-}*/
-
