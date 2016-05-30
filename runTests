@@ -1,0 +1,7 @@
+for entry in tests/*
+do
+  echo "running $entry"
+  ./$entry
+done
+
+
