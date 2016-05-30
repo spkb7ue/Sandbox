@@ -4,7 +4,6 @@
 
 using namespace raccoon;
 
-// Tests that the Foo::Bar() method does Abc.
 BOOST_AUTO_TEST_CASE(TestUtils_TestBinaryRepresentation)
 {
     static_assert(GetBinaryRepresentationV1<9>::bit_num == 1001, "Got a wrong binary representation");
