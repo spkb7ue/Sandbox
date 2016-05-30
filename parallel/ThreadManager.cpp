@@ -45,5 +45,5 @@ bool ThreadManager::RegisterCallbackExecutionRequest()
 void ThreadManager::RegisterThreadTerminationRequest()
 {
     std::lock_guard<SpinLock> mutex(m_lock);
-    m_exitFlag = true;
+    m_exitThread = true;
 }

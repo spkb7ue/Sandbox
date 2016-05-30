@@ -60,5 +60,6 @@ BOOST_AUTO_TEST_CASE(TestNullLock)
         actualValue += TestIncrement(numThreads, numIncrements, &m_nullLock);
         expectedValue += numThreads*numIncrements;
     }
-    BOOST_ASSERT(actualValue == expectedValue);
+    /// This test case can fail once in a while. Don't bother about this too much.
+    BOOST_ASSERT(actualValue != expectedValue);
 }

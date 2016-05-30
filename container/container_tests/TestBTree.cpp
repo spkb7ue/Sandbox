@@ -49,7 +49,6 @@ BOOST_AUTO_TEST_CASE(TestTreeTraverse)
 
     // The test involves just adding up the data in all nodes
     const int totalNodes = 5;
-    const int sum = totalNodes*(totalNodes-1)/2;
     for(int i=0;i<totalNodes;++i)
     {
         nodes.push_back(BNode<int>(i));
