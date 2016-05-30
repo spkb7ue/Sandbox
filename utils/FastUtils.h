@@ -43,21 +43,21 @@ struct pow10<0>
 };
 
 template<int i>
-class get_bits
+class GetBinaryRepresentationV1
 {
     public:
     enum
     {
-        value = 2*get_bits<i/2>::value,
+        value = 2*GetBinaryRepresentationV1<i/2>::value,
         rem = i % value,
         exp = exp2<value>::recur,
-        bit_num = pow10< exp >::value + get_bits<rem>::bit_num
+        bit_num = pow10< exp >::value + GetBinaryRepresentationV1<rem>::bit_num
 
     };
 };
 
 template<>
-class get_bits<1>
+class GetBinaryRepresentationV1<1>
 {
     public:
     enum
@@ -70,7 +70,7 @@ class get_bits<1>
 };
 
 template<>
-class get_bits<0>
+class GetBinaryRepresentationV1<0>
 {
     public:
     enum
@@ -83,13 +83,13 @@ class get_bits<0>
 };
 
 template <int val>
-struct Bin
+struct GetBinaryRepresentationV2
 {
-    enum { value = 10 * Bin<(val >> 1)>::value + (val & 1) };
+    enum { value = 10 * GetBinaryRepresentationV2<(val >> 1)>::value + (val & 1) };
 };
 
 template <>
-struct Bin<0>
+struct GetBinaryRepresentationV2<0>
 {
     enum { value = 0 };
 };
