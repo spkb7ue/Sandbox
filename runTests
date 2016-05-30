@@ -2,6 +2,7 @@ for entry in tests/*
 do
   echo "running $entry"
   ./$entry
+  echo "-----------------------"
 done
 
 
