@@ -1,6 +1,8 @@
-#include <iostream>
 #include <assert.h>
 using namespace std;
+
+namespace raccoon
+{
 
 template<int i>
 struct exp2
@@ -50,7 +52,7 @@ class get_bits
         rem = i % value,
         exp = exp2<value>::recur,
         bit_num = pow10< exp >::value + get_bits<rem>::bit_num
-        
+
     };
 };
 
@@ -91,12 +93,13 @@ struct Bin<0>
 {
     enum { value = 0 };
 };
-
+}
+/*
 #define num 9
 int main()
 {
     static_assert(get_bits<num>::bit_num == 1001, "This is failure");
     static_assert(Bin<num>::value == 1001, "This is failure");
 
-}
+}*/
 
