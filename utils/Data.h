@@ -5,6 +5,10 @@
 #include <memory>
 using namespace std;
 
+namespace raccoon
+{
+
+
 template<typename...Args>
 struct Data
 {
@@ -44,6 +48,8 @@ Get(Data<T, Ts...>& t) {
   return Get<k - 1>(static_cast<Data<Ts...>&>(t));
 }
 
+}
+/*
 int main()
 {
     Data<double, float, string> d(3.0, 5.0f, "This is a joke");
@@ -51,3 +57,4 @@ int main()
     cout<<typeid(DataType<2,Data<double,float,string>>::type).name()<<endl;
     cout<<Get<2>(d)<<endl;
 }
+*/
