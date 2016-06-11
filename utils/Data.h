@@ -3,7 +3,10 @@
 namespace raccoon
 {
 
-
+/**
+* Data emulates std::tuple. Just experimenting with the code. No reason to use this over std::tuple.
+* See TestData.cpp for the usage.
+*/
 template<typename...Args>
 struct Data
 {
