@@ -1,10 +1,5 @@
-#include <iostream>
-#include <string>
-#include <typeinfo>
 #include <utility>
 #include <memory>
-using namespace std;
-
 namespace raccoon
 {
 
@@ -49,12 +44,3 @@ Get(Data<T, Ts...>& t) {
 }
 
 }
-/*
-int main()
-{
-    Data<double, float, string> d(3.0, 5.0f, "This is a joke");
-    cout<<typeid(Data<char, float, string>::TYPE).name()<<endl;
-    cout<<typeid(DataType<2,Data<double,float,string>>::type).name()<<endl;
-    cout<<Get<2>(d)<<endl;
-}
-*/
