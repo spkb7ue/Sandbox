@@ -1,15 +1,17 @@
 #pragma once
 #include "ILock.h"
+#include <atomic>
 
 namespace raccoon
 {
-
-class NullLock : public ILock<NullLock>
-{
-public:
-    void lockImpl(){}
-    bool tryLockImpl(){return true;}
-    void unlockImpl(){}
-};
-
+    class SpinLock : public ILock<SpinLock>
+    {
+    public:
+        SpinLock();
+        void lockImpl();
+        bool tryLockImpl();
+        void unlockImpl();
+    private:
+        std::atomic_flag m_flag;
+    };
 }
