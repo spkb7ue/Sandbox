@@ -11,7 +11,17 @@ namespace raccoon
     {
     public:
         ThreadManager(std::function<void()> callback);
+
+        /**
+        * Register the request to execute the callback.
+        * @return true ff the request was successful or false otherwise.
+        * If the return value is true, it is guaranteed that the callback will
+        * be executed exactly once. If the callback is currently in execution,
+        * this method will stall the calling thread.
+        */
         bool RegisterCallbackExecutionRequest();
+
+
         void RegisterThreadTerminationRequest();
 
     private:
