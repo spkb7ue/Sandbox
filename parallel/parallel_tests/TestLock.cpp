@@ -1,4 +1,4 @@
-#define BOOST_TEST_MODULE TEST_BTree
+#define BOOST_TEST_MODULE TEST_Lock
 #include <boost/test/unit_test.hpp>
 #include <parallel/SpinLock.h>
 #include <parallel/NullLock.h>

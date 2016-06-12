@@ -12,6 +12,6 @@ namespace raccoon
         bool tryLockImpl();
         void unlockImpl();
     private:
-         std::atomic_flag m_flag;
+        std::atomic_flag m_flag;
     };
 }
