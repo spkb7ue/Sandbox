@@ -18,7 +18,9 @@ namespace
 BOOST_AUTO_TEST_CASE(TestData_Workflow)
 {
     point p;
-    Data<double, point, std::string> d(3.0, p, "This is a joke");
-    point q = Get<1>(d);
-    BOOST_ASSERT(p.x == q.x);
+    const point& c = point();
+    std::string testStr = "Test String";
+    Data<double, point, const point&, std::string> d(3.0, p, c, testStr);
+    BOOST_ASSERT(p.x == Get<1>(d).x);
+    BOOST_ASSERT(Get<3>(d) == testStr);
 }

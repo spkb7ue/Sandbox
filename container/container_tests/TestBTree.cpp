@@ -69,6 +69,7 @@ BOOST_AUTO_TEST_CASE(TestTreeTraverse)
         nodeCount += i;
     });
 
+    const int sum = totalNodes*(totalNodes-1)/2;
     BOOST_ASSERT(nodeCount == sum);
 }
 
