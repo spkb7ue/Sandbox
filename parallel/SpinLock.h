@@ -3,14 +3,14 @@
 #include <atomic>
 
 namespace raccoon
-{     
-    class SpinLock : public ILock
+{
+    class SpinLock : public ILock<SpinLock>
     {
     public:
         SpinLock();
-        virtual void lock() override;
-        virtual bool try_lock() override;
-        virtual void unlock() override;
+        void lockImpl();
+        bool tryLockImpl();
+        void unlockImpl();
     private:
          std::atomic_flag m_flag;
     };

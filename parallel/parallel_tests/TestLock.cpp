@@ -13,13 +13,14 @@ namespace
     SpinLock m_spinLock;
     NullLock m_nullLock;
 
-    int TestIncrement(int numThreads, int numIncrements, ILock *lock)
+    template<typename LockingStrategy>
+    int TestIncrement(int numThreads, int numIncrements, ILock<LockingStrategy> *lock)
     {
         int count = 0;
         std::function<void()> func = [&count, numIncrements, lock](){
             for(int i=0;i<numIncrements;++i)
             {
-                std::lock_guard<ILock> lockGuard(*lock);
+                std::lock_guard<ILock<LockingStrategy>> lockGuard(*lock);
                 ++count;
             }
         };

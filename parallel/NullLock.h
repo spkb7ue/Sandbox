@@ -4,12 +4,12 @@
 namespace raccoon
 {
 
-class NullLock : public ILock
+class NullLock : public ILock<NullLock>
 {
 public:
-    virtual void lock() override {}
-    virtual bool try_lock() override{return true;}
-    virtual void unlock() override{}
+    void lockImpl(){}
+    bool tryLockImpl(){return true;}
+    void unlockImpl(){}
 };
 
 }
