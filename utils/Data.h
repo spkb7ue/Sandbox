@@ -17,7 +17,7 @@ template<typename T, typename...Args>
 struct Data<T, Args...> : public Data<Args...>
 {
 public:
-    Data(T&& t, Args&&... args):Data<Args...>(std::forward<Args>(args)...),m_value(t){}
+    Data(const T& t, const Args&... args):Data<Args...>(args...), m_value(t){}
     T m_value;
     typedef T TYPE;
 };
