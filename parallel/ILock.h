@@ -1,5 +1,8 @@
 #pragma once
 
+namespace raccoon
+{
+
 class ILock
 {
 public:
@@ -8,3 +11,5 @@ public:
     virtual void unlock() = 0;
     ~ILock(){}
 };
+
+}
